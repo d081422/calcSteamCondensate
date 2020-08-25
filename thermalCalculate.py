@@ -56,16 +56,16 @@ def CalcOverHeadPipeThermalFlux(tSteam, innerDiameter, outerDiameter, insulaOneD
     secondThermConduct = CalcTypeInsula(insulaType[1],tOneMedial)
   
 	#step4:计算保温层外壁与环境间的对流换热系数
-    num1 = pow((273 + tSurf)/100,4);
+    num1 = pow((273 + tSurf)/100,4)
     alpha = 5.67 * blackness / (tSurf - tAmbient) * (num1 - num2) + 72.81 * num3 / num4
 
 	#step5: 计算保温层外表面温度
-    tNum3 = alpha * insulaTwoDiameter;
+    tNum3 = alpha * insulaTwoDiameter
     firstTsurfNum = 1 / firstThermConduct * tNum1
     secondTsurfNum = 1 / secondThermConduct * tNum2
     thirdTsurfNum = 2000 / tNum3
     tSurfNum = firstTsurfNum * tAmbient + secondTsurfNum * tAmbient + thirdTsurfNum * tSteam
-    tSurfDem = firstTsurfNum +  secondTsurfNum + thirdTsurfNum
+    tSurfDem = firstTsurfNum + secondTsurfNum + thirdTsurfNum
     tSurf = tSurfNum / tSurfDem
 
 	#step6: 计算保温层间的温度
@@ -78,8 +78,8 @@ def CalcOverHeadPipeThermalFlux(tSteam, innerDiameter, outerDiameter, insulaOneD
   x_3 = insulaTwoDiameter * 1e-3 / (2 * secondThermConduct) * math.log(insulaTwoDiameter / insulaOneDiameter)
   x_4 = 1 / alpha
   #x_5= 1/alpha2;
-  heatLossOneSquare = (tSteam - tAmbient) / (x_1 + x_2 + x_3 + x_4);
-  return heatLossOneSquare 
+  heatLossOneSquare = (tSteam - tAmbient) / (x_1 + x_2 + x_3 + x_4)
+  return heatLossOneSquare
 
 
 def calculateDropPressure(innerDiameter,pipeLength,flowMass,press,tempe):
